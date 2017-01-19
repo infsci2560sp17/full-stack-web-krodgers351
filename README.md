@@ -4,12 +4,11 @@ TODO : Please provide a detailed project description.
 
 ## Build status
 
-TODO : Modify to match your project specific Travis Build
 [![Build Status](https://travis-ci.org/infsci2560sp17/full-stack-web-krodgers351.svg?branch=master)](https://travis-ci.org/infsci2560sp17/full-stack-web-krodgers351)
 
 ## Web Site
 
-[Website Title](https://enigmatic-lake-89304.herokuapp.com/) ![](https....)
+[A Very Cool Website](https://enigmatic-lake-89304.herokuapp.com/) ![](https....)
 
 ## Key Features
 
