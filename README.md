@@ -1,6 +1,16 @@
-# TODO : Your Project Name
+# iKnowledge
 
-TODO : Please provide a detailed project description.
+1. What is the proposed name for your Web application?
+	- iKnowledge 
+2. Who is the target audience for your Web application?
+	- Employees within my organization that need to find information. Organizations can be broken down structurally into different entities based on functional responsibilities. Employees not only need to be able to efficiently and accurately find the information they need within their own entity, but also potentially across entities. 
+3. What problem is it intended to solve for the target audience?
+	- As with any knowledge management system, the problem it attempts to solve is how to share knowledge within and potentially across organizations through a system that creates, stores, and propagates information.  I’m basing the specific problem this project will solve based on the current practice within the organization I work at. Currently knowledge and information is spread all over the place. Knowledge can be found within an individual’s folder on a shared network, in random lists on Sharepoint, and stored on an individual’s computer. There is no central repository that an employee can go look to find the information they need. They waste time combing the shared network and Sharepoint to find what they need with no guarantee that what they find is valid or the most up-to-date information. Another problem is that there are a large percentage of employees that have been with the organization for a long time and a push to bring in new employees. This inherently means there is a large gap in knowledge. The KMS allows for a medium to narrow that gap by providing a mechanism for the older subject matter experts to impart what they know in a manner that will store that knowledge. Additionally, employees must not just be able to find information. They must be able to find what they need quickly and accurately. This can be a problem if there is a massive amount of information stored in many documents within an organization. The KMS proposed for this project will also take that into consideration.
+4. How will it meet the minimum project requirements?
+	- Although users within my organization will not need to log into the app, for the purpose of this project I will have users create accounts, with the ability to update their information and also delete their accounts. I can use this login to simulate the fact that not all employees are privileged to all information. For information that is public to all they will not need to log-in. For information that only certain individuals should be able to access since it may be specific to certain units, I will require the user to log-in with the correct certification/role, which will be stored in a database with their account information, to be able to access that information. The roles that will be assigned to users will be based on the unit they belong to within the sub-division. Sub-division level managers and unit managers will be granted additional roles that will allow them access to more information.  All data for the KMS will be created, updated, retrieved, and deleted through RESTful services and will be handled using both JSON and XML formats. The form used to create information will also include fields for metadata to allow for efficient retrieval and filtering of knowledge.  This project will utilize Object Oriented Programming and attempt to follow the SOLID coding methodology and any other good programming styles taught in class. 
+5. Why is your proposed Web application unique or creative beyond simply meeting the minimum requirements?
+	- My application is unique because I’m designing it specifically for the needs of my organization. Improving knowledge management is an official objective of my sub-division for 2017. Being on the knowledge management team within my unit, I’ll be involved in defining and implementing the specific requirements for the system and how to incorporate it with the many other units within the sub-division as a whole.    
+
 
 ## Build status
 
@@ -12,7 +22,7 @@ TODO : Please provide a detailed project description.
 
 ## Web Site
 
-[A Very Cool Website](https://enigmatic-lake-89304.herokuapp.com/) ![](https....)
+[iKnowledge](https://enigmatic-lake-89304.herokuapp.com/) ![](https....)
 
 ## Key Features
 
