@@ -6,6 +6,10 @@ TODO : Please provide a detailed project description.
 
 [![Build Status](https://travis-ci.org/infsci2560sp17/full-stack-web-krodgers351.svg?branch=master)](https://travis-ci.org/infsci2560sp17/full-stack-web-krodgers351)
 
+## Changelog
+
+[Changelog] (CHANGELOG.md)
+
 ## Web Site
 
 [A Very Cool Website](https://enigmatic-lake-89304.herokuapp.com/) ![](https....)
