@@ -28,15 +28,16 @@
 
 TODO : Please list key features of your project.
 
-* Key Feature 1
-* Key Feature 2
+* Users can add KM catalog entries to the repository
+* Users can use the KM catalog entries RESTful service to get the entries in JSON format
 * Key Feature N
 
 ## Project Details
 
 ### Landing Page
 
-TODO : please provide a description of your landing page inluding a screen shot ![](https://.../image.JPG)
+![Landing Page](https://github.com/krodgers351/repo_for_images/raw/master/LandingPage.JPG)
+Work in Progress : After the user logs in, they are taken to the landing page. From this page, they can view the KM Catalog entries. They also have the ability to add entries.
 
 ### User Input Form
 
@@ -103,5 +104,5 @@ All known errors cause the resource to return HTTP error code header together wi
 TODO : List all technologies used in your project
 
 - [Spring Boot](https://projects.spring.io/spring-boot/) - Takes an opinionated view of building production-ready Spring applications.
-- [Thymleaf](http://www.thymeleaf.org/) - Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+- [Thymeleaf](http://www.thymeleaf.org/) - Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
 - [Maven](https://maven.apache.org/) - Apache Maven is a software project management and comprehension tool.
