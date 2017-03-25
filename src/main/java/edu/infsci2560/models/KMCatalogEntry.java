@@ -21,19 +21,19 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class KMCatalogEntry {
     private static final long serialVersionUID = 1L;
     
-    public enum DocumentCategory {
-        Unknown,
-        Best_Practice,
-        Design,
-        Lessons_Learned,
-        Procedure,
-        Reference,
-        Requirements,
-        Standard,
-        Template,
-        Training,
-        User_Documentation               
-    }
+    //public enum DocumentCategory {
+    //    Unknown,
+    //    Best_Practice,
+    //    Design,
+    //    Lessons_Learned,
+    //    Procedure,
+    //    Reference,
+    //    Requirements,
+    //    Standard,
+    //    Template,
+    //    Training,
+    //    User_Documentation               
+    //}
     
     public enum Community {
         Everyone,
@@ -59,7 +59,8 @@ public class KMCatalogEntry {
         this.documentTitle = null;
         this.knowledgeOwner = null;
         this.audience = null;
-        this.documentCategory = DocumentCategory.Unknown;
+		this.documentCategory = null;
+        //this.documentCategory = DocumentCategory.Unknown;
         this.community = Community.Everyone;
         this.documentFilename = null;
     }

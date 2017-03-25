@@ -5,11 +5,8 @@
  */
 package edu.infsci2560.services;
 
-import edu.infsci2560.models.KMCatalogEntry;
 import edu.infsci2560.models.DocumentCategory;
-//import edu.infsci2560.models.KMCatalogEntry.DocumentCategory;
-import edu.infsci2560.models.KMCatalogEntry.Community;
-import edu.infsci2560.repositories.KMCatalogEntryRepository;
+import edu.infsci2560.repositories.DocumentCategoryRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,27 +27,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author KRodgers
  */
 @RestController
-@RequestMapping("/public/api/kmcatalogentries")
-public class KMCatalogEntriesService {
+@RequestMapping("/public/api/documentcategories")
+public class DocumentCategoriesService {
 
     @Autowired
-    private KMCatalogEntryRepository repository;
+    private DocumentCategoryRepository repository;
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Iterable<KMCatalogEntry>> list() {
+    public ResponseEntity<Iterable<DocumentCategory>> list() {
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<>(repository.findAll(), headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<KMCatalogEntry> list(@PathVariable("id") Long id) {
+    public ResponseEntity<DocumentCategory> list(@PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<>(repository.findOne(id), headers, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes="application/json", produces = "application/json")
-    public ResponseEntity<KMCatalogEntry> create(@RequestBody KMCatalogEntry catalogEntry) {
+    public ResponseEntity<DocumentCategory> create(@RequestBody DocumentCategory documentCategory) {
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(repository.save(catalogEntry), headers, HttpStatus.OK);
+        return new ResponseEntity<>(repository.save(documentCategory), headers, HttpStatus.OK);
     }
 }
