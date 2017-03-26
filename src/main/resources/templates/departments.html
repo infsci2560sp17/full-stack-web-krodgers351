@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Departments</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" href="../../css/styles.css" />
+</head>
+<body>
+    <header>
+        <h1 data-th-inline="text"><img th:src="@{/images/logo.jpg}" alt="" />Knowledge Management System</h1>
+    </header>
+    <section id="nav">
+        <nav>
+            <ul>
+                <li><a th:href="@{/kmcatalogentries}">Home</a></li>
+                <li><a th:href="@{/documentcategories}">Document Categories</a></li>
+                <li><a th:href="@{/products}">Products</a></li>
+                <li><a th:href="@{/departments}">Departments</a></li>
+                <li><a th:href="@{/communities}">Communities</a></li>
+                <li><a th:href="@{/d3tree}">D3 Tree</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section class="content">
+        <div>
+            <table id="catalog">
+                <tr>
+                    <th>ID</th>
+                    <th>Department</th>
+                </tr>
+                <tr data-th-each="entry : ${departments}">
+                    <td data-th-text="${entry.id}"></td>
+                    <td data-th-text="${entry.departmentName}"></td>
+                </tr>
+            </table>
+        </div>
+        <hr />
+        <div id="addEntry">
+            <h2>Add a New Department</h2>
+            <form data-th-action="@{/departments/add}" name="addDepartmentForm" method="post">
+                Department: <input type="text" name="departmentName" /><br />
+                <input class="button" type="submit" value="Add Department" />
+            </form>
+        </div>
+        <hr />
+        <div id="submitEntry">
+            <form data-th-action="@{/logout}" method="post">
+                <input class="button" type="submit" value="Sign Out" />
+            </form>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>KM Catalog Home</title>
 		<meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" href="../../css/styles.css"/>
+        <script th:src="@{/js/lib/jquery-3.2.0.min.js}" src="../../js/lib/jquery-3.1.1.min.js" type="text/javascript"></script>
+
+    <script th:inline="javascript" type="text/javascript">
+        $("document").ready(function (e) {
+            /*<![CDATA[*/
+            getDataFromWebService(/*[[@{/public/api/documentcategories}]]*/, "doc");
+            getDataFromWebService(/*[[@{/public/api/communities}]]*/, "community");
+            getDataFromWebService(/*[[@{/public/api/products}]]*/, "product");
+            /*]]>*/
+        });
+
+        function creatDocOptions(data) {
+            for (var field in data) {
+                $('<option value="' + data[field].categoryName + '">' + data[field].categoryName + '</option>').appendTo('#doc_cat_selection');
+            }
+        }
+
+        function creatCommunityOptions(data) {
+            for (var field in data) {
+                $('<option value="' + data[field].communityName + '">' + data[field].communityName + '</option>').appendTo('#community_selection');
+            }
+        }
+
+        function creatProductOptions(data) {
+            for (var field in data) {
+                $('<option value="' + data[field].productName + '">' + data[field].productName + '</option>').appendTo('#product_selection');
+            }
+        }
+
+        function getDataFromWebService(targetUrl, targetDOM) {
+            $.ajax({
+                type: "GET", //method type of GET
+                url: targetUrl, //url passed to function
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data, status, jqXHR) { //on successful ajax call
+                    if (targetDOM == "doc") {
+                        creatDocOptions(data);
+                    }
+                    if (targetDOM == "community") {
+                        creatCommunityOptions(data);
+                    }
+                    if (targetDOM == "product") {
+                        creatProductOptions(data);
+                    }
+                },
+                error: function (jqXHR, status) { //if not successful
+                    console.log(status); //log error to javascript console
+                }
+            });
+        }
+
+    </script>
+
     </head>
     <body>
 		<header>
@@ -13,7 +68,12 @@
 		<section id="nav">
 			<nav>
 				<ul>
-					<li><a th:href="@{/kmcatalogentries}">Home</a></li>
+                    <li><a th:href="@{/kmcatalogentries}">Home</a></li>
+                    <li><a th:href="@{/documentcategories}">Document Categories</a></li>
+                    <li><a th:href="@{/products}">Products</a></li>
+                    <li><a th:href="@{/departments}">Departments</a></li>
+                    <li><a th:href="@{/communities}">Communities</a></li>
+                    <li><a th:href="@{/d3tree}">D3 Tree</a></li>
 				</ul>
 			</nav>
 		</section>
@@ -27,6 +87,7 @@
 						<th>Audience</th>
 						<th>Category</th>
 						<th>Community</th>
+                        <th>Product</th>
 						<th>Filename</th>
 					</tr>                
 					<tr data-th-each="entry : ${kmcatalogentries}">
@@ -36,6 +97,7 @@
 						<td data-th-text="${entry.audience}"></td>
 						<td data-th-text="${entry.documentCategory}"></td>
 						<td data-th-text="${entry.community}"></td>
+                        <td data-th-text="${entry.product}"></td>
 						<td data-th-text="${entry.documentFilename}"></td>
 					</tr>
 				</table>
@@ -47,25 +109,12 @@
 					Title: <input type="text" name="documentTitle" /><br />
 					Knowledge Owner: <input type="text" name="knowledgeOwner" /><br />
 					Audience: <input type="text" name="audience" /><br />
-					Document Category:<br />
-					<input type="radio" name="documentCategory" value="Unknown" checked="checked" /> Unknown<br />
-					<input type="radio" name="documentCategory" value="Best_Practice" /> Best Practice<br />
-					<input type="radio" name="documentCategory" value="Design" /> Design<br />
-					<input type="radio" name="documentCategory" value="Lessons_Learned" /> Lessons Learned<br />
-					<input type="radio" name="documentCategory" value="Procedure" /> Procedure<br />
-					<input type="radio" name="documentCategory" value="Reference" /> Reference<br />
-					<input type="radio" name="documentCategory" value="Requirements" /> Requirements<br />
-					<input type="radio" name="documentCategory" value="Standard" /> Standard<br />
-					<input type="radio" name="documentCategory" value="Template" /> Template<br />
-					<input type="radio" name="documentCategory" value="Training" /> Training<br />
-					<input type="radio" name="documentCategory" value="User_Documentation" /> User Documentation<br />	
-					Community:<br />
-					<input type="radio" name="community" value="Everyone" checked="checked" /> Everyone<br />
-					<input type="radio" name="community" value="Chemical_Engineers" /> Chemical Engineers<br />
-					<input type="radio" name="community" value="Electrical_Engineers" /> Electrical Engineers<br />
-					<input type="radio" name="community" value="Mechanical_Engineers" /> Mechanical Engineers<br />
-					<input type="radio" name="community" value="System_Administration" /> System Administration<br />
-					<input type="radio" name="community" value="Developers" /> Developers<br />
+                    Document Category:
+                    <select id="doc_cat_selection" name="documentCategory"></select><br />
+					Community:
+                    <select id="community_selection" name="community"></select><br />
+                    Product:
+                    <select id="product_selection" name="product"></select><br />
 					Filename: <input type="text" name="documentFilename" /><br />
 					<input class="button" type="submit" value="Add Catalog Entry"/>
 				</form> 

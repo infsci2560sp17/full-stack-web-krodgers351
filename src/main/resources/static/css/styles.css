@@ -16,7 +16,7 @@ html {
 
 body {
 	height: 100%;
-	width:86%;
+	width:90%;
 	margin:auto;
 	color: white;
 }
@@ -64,8 +64,7 @@ header{
 	display: block;
 	margin-top: 3%;
 	white-space: nowrap;
-	font-size:1.5em;
-	
+	font-size:1.3em;	
 }
 
 #nav ul{
@@ -186,4 +185,47 @@ nav a:hover {
 
 a:active, nav a:active {
     background-color: #A9D0F5;
+}
+
+.node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 3px;
+}
+
+.node text {
+    font: 12px sans-serif;
+    font-weight: bold;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+
+#tblListData {
+    border-radius: 1px 8px 8px 1px;
+}
+
+#tblListData, th {
+    padding: 4px;
+    border-collapse: collapse;
+    border: 1px solid white;
+    color: white;
+}
+
+#tblListData, td {
+    font-size: 12px;
+    padding: 3px;
+    border-collapse: collapse;
+    border-right: 1px solid black;
+}
+
+#btnToggleDocuments {
+    padding: 4px;
+    background-color: lightsteelblue;
+    font: 11px sans-serif;
+    border-color: steelblue;
+    border-radius: 1px 8px 8px 1px;
 }

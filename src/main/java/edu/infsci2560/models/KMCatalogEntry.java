@@ -19,39 +19,17 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  */
 @Entity
 public class KMCatalogEntry {
-    private static final long serialVersionUID = 1L;
-    
-    public enum DocumentCategory {
-        Unknown,
-        Best_Practice,
-        Design,
-        Lessons_Learned,
-        Procedure,
-        Reference,
-        Requirements,
-        Standard,
-        Template,
-        Training,
-        User_Documentation               
-    }
-    
-    public enum Community {
-        Everyone,
-        Chemical_Engineers,
-        Electrical_Engineers,
-        Mechanical_Engineers,
-        System_Administration,
-        Developers
-    }
-    
+    private static final long serialVersionUID = 1L;  
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     protected String documentTitle;
     protected String knowledgeOwner;
     protected String audience;
-    protected DocumentCategory documentCategory;
-    protected Community community;
+	protected String documentCategory;
+    protected String community;
+	protected String product;
     protected String documentFilename;
     
     public KMCatalogEntry(){
@@ -59,25 +37,27 @@ public class KMCatalogEntry {
         this.documentTitle = null;
         this.knowledgeOwner = null;
         this.audience = null;
-        this.documentCategory = DocumentCategory.Unknown;
-        this.community = Community.Everyone;
+		this.documentCategory = null;
+        this.community = null;
+		this.product = null;
         this.documentFilename = null;
     }
     
-    public KMCatalogEntry(Long id, String title, String owner, String audience, DocumentCategory category, Community community, String filename){
+    public KMCatalogEntry(Long id, String title, String owner, String audience, String category, String community, String product, String filename){
         this.id = id;
         this.documentTitle = title;
         this.knowledgeOwner = owner;
         this.audience = audience;
         this.documentCategory = category;
         this.community = community;
+		this.product = product;
         this.documentFilename = filename;
     }
     
     @Override
     public String toString() {
         return "[ id=" + this.id + ", title=" + this.documentTitle + ", knowledge owner=" + this.knowledgeOwner + ", audience=" + this.audience + ", category=" 
-                + this.documentCategory + ", community=" + this.community + ", filename=" + this.documentFilename + " ]";
+                + this.documentCategory + ", community=" + this.community + ", product=" + this.product + ", filename=" + this.documentFilename + " ]";
     }
 
     @Override
@@ -149,29 +129,43 @@ public class KMCatalogEntry {
     /**
      * @return the documentCategory
      */
-    public DocumentCategory getDocumentCategory() {
+    public String getDocumentCategory() {
         return documentCategory;
     }
 
     /**
-     * @param documentCategory the documentCategory to set
+     * @param String the documentCategory to set
      */
-    public void setDocumentCategory(DocumentCategory documentCategory) {
+    public void setDocumentCategory(String documentCategory) {
         this.documentCategory = documentCategory;
     }
 
     /**
      * @return the community
      */
-    public Community getCommunity() {
+    public String getCommunity() {
         return community;
     }
 
     /**
      * @param community the community to set
      */
-    public void setCommunity(Community community) {
+    public void setCommunity(String community) {
         this.community = community;
+    }
+
+	/**
+     * @return the product
+     */
+    public String getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(String product) {
+        this.product = product;
     }
 
     /**
