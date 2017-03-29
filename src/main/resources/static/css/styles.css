@@ -16,7 +16,7 @@ html {
 
 body {
 	height: 100%;
-	width:90%;
+	width:95%;
 	margin:auto;
 	color: white;
 }
@@ -24,15 +24,14 @@ body {
 
 header{
 	background-color: rgba(0,0,0,0.9);
-	padding: 20px auto;
+	padding: 20px;
 	margin-bottom: 3%;
 	border-radius: 0px 75px 0px 10px;
 }
 
 .content {
 	float:right;
-	width:80%;
-	margin-left:2%;
+	width:82%;
 	border-radius: 0px 50px 50px 50px;
 }
 
@@ -52,7 +51,7 @@ header{
 
 #nav {
 	float:left;
-	width:18%;
+	width:15%;
 	border-radius: 0px 50px 0px 0px;
 	background: -webkit-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0)); 
 	background: -o-linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0)); 
@@ -64,7 +63,7 @@ header{
 	display: block;
 	margin-top: 3%;
 	white-space: nowrap;
-	font-size:1.3em;	
+	font-size:1.1em;	
 }
 
 #nav ul{
@@ -124,11 +123,11 @@ h1{
 	text-align:center;
 	color: #0A30DA;	
 	opacity: 0.8;
-	font-size: 3.5em;
+	font-size: 3.4em;
 	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 	margin-bottom: 0.5%;
 	margin-top: 0.5%;
-	letter-spacing: 3px;
+	letter-spacing: 2px;
 }
 
 img {
@@ -163,8 +162,7 @@ a:visited {
 
 a:hover{
 	color: #8FA0E6;
-	font-size: 110%;
-	letter-spacing: 1px;
+	font-size: 101%;
 }
 
 nav a:link {
@@ -180,7 +178,6 @@ nav a:hover {
 	color: #8FA0E6;
 	font-weight:bold;
 	font-size: 101%;
-	letter-spacing: 1px;
 }
 
 a:active, nav a:active {
@@ -196,6 +193,7 @@ a:active, nav a:active {
 .node text {
     font: 12px sans-serif;
     font-weight: bold;
+
 }
 
 .link {
