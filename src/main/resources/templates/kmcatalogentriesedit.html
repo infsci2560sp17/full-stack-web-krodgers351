@@ -17,11 +17,18 @@ and open the template in the editor.
 
         $("document").ready(function (e) {
             /*<![CDATA[*/
+            getDataFromWebService(/*[[@{/public/api/departments}]]*/, "audience");
             getDataFromWebService(/*[[@{/public/api/documentcategories}]]*/, "doc");
             getDataFromWebService(/*[[@{/public/api/communities}]]*/, "community");
             getDataFromWebService(/*[[@{/public/api/products}]]*/, "product");
             /*]]>*/
         });
+
+        function creatAudienceOptions(data) {
+            for (var field in data) {
+                $('<option value="' + data[field].departmentName + '">' + data[field].departmentName + '</option>').appendTo('#audience_selection');
+            }
+        }
 
         function creatDocOptions(data) {
             for (var field in data) {
@@ -54,6 +61,9 @@ and open the template in the editor.
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data, status, jqXHR) { //on successful ajax call
+                    if (targetDOM == "audience") {
+                        creatAudienceOptions(data);
+                    }
                     if (targetDOM == "doc") {
                         creatDocOptions(data);
                     }
@@ -70,11 +80,15 @@ and open the template in the editor.
             });
         }
 
+        function popup() {
+            window.open("/files", 'window', 'width=800,height=500');
+        }
+
     </script>
 </head>
 <body>
     <header>
-        <h1 data-th-inline="text"><img th:src="@{/images/logo.jpg}" alt="" />Knowledge Management System</h1>
+        <h1 data-th-inline="text"><img th:src="@{/images/logo2.png}" alt="" />Knowledge Management System</h1>
     </header>
     <section id="nav">
         <nav>
@@ -85,38 +99,99 @@ and open the template in the editor.
                 <li><a th:href="@{/departments}">Departments</a></li>
                 <li><a th:href="@{/communities}">Communities</a></li>
                 <li><a th:href="@{/d3tree}">D3 Tree</a></li>
+                <li><a th:href="@{/searchcatalog}">Search Catalog</a></li>
             </ul>
         </nav>
     </section>
     <section class="content">
         <div id="addEntry">
-            <h2>Edit KM Catalog Entry</h2>
             <form data-th-action="@{/kmcatalogentries/edit/{id}(id=${entry.id})}" data-th-object="${entry}" data-th-method="put" role="form">
                 <script th:inline="javascript">
                     /*<![CDATA[*/
+                    myAudience = /*[[${entry.audience}]]*/ 'value';
                     myCategory = /*[[${entry.documentCategory}]]*/ 'value';
                     myCommunity = /*[[${entry.community}]]*/ 'value';
                     myProduct = /*[[${entry.product}]]*/ 'value';
                     /*]]>*/
                 </script>
-                Title: <input type="text" name="documentTitle" data-th-value="${entry.documentTitle}" /><br />
-                Knowledge Owner: <input type="text" name="knowledgeOwner" data-th-value="${entry.knowledgeOwner}" /><br />
-                Audience: <input type="text" name="audience" data-th-value="${entry.audience}" /><br />
-                Document Category:
-                <select id="doc_cat_selection" name="documentCategory" data-th-value="${entry.documentCategory}">
-                    <option data-th-value="${entry.documentCategory}" data-th-text="${entry.documentCategory}" data-th-selected="${entry.documentCategory}"></option>
-                </select><br />
-                Community:
-                <select id="community_selection" name="community" data-th-value="${entry.community}">
-                    <option data-th-value="${entry.community}" data-th-text="${entry.community}" data-th-selected="${entry.community}"></option>
-                </select><br />
-                Product:
-                <select id="product_selection" name="product" data-th-value="${entry.product}">
-                    <option data-th-value="${entry.product}" data-th-text="${entry.product}" data-th-selected="${entry.product}"></option>
-                </select><br />
-                Filename: <input type="text" name="documentFilename" data-th-value="${entry.documentFilename}" /><br />
-                <input type="submit" value="Update Entry" /><br />
+                <table id="tblForm">
+                    <tr>
+                        <th colspan="2"><h2>Edit KM Catalog Entry</h2></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Title:
+                        </td>
+                        <td>
+                            <input type="text" name="documentTitle" data-th-value="${entry.documentTitle}" required="required" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Knowledge Owner:
+                        </td>
+                        <td>
+                            <input type="text" name="knowledgeOwner" data-th-value="${entry.knowledgeOwner}" required="required" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Audience:
+                        </td>
+                        <td>
+                            <select id="doc_cat_selection" name="audience" data-th-value="${entry.audience}" required="required">
+                                <option data-th-value="${entry.audience}" data-th-text="${entry.audience}" data-th-selected="${entry.audience}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Document Category:
+                        </td>
+                        <td>
+                            <select id="doc_cat_selection" name="documentCategory" data-th-value="${entry.documentCategory}" required="required">
+                                <option data-th-value="${entry.documentCategory}" data-th-text="${entry.documentCategory}" data-th-selected="${entry.documentCategory}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Community:
+                        </td>
+                        <td>
+                            <select id="community_selection" name="community" data-th-value="${entry.community}" required="required">
+                                <option data-th-value="${entry.community}" data-th-text="${entry.community}" data-th-selected="${entry.community}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Product:
+                        </td>
+                        <td>
+                            <select id="product_selection" name="product" data-th-value="${entry.product}" required="required">
+                                <option data-th-value="${entry.product}" data-th-text="${entry.product}" data-th-selected="${entry.product}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Filename:
+                        </td>
+                        <td>
+                            <input type="text" name="documentFilename" data-th-value="${entry.documentFilename}" required="required" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Update Entry" />
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
             </form>
+            <hr />
+            <button id="btnUpload" th:onclick="'javascript:popup()'">Upload New File</button>
         </div>
     </section>
 </body>

@@ -16,23 +16,37 @@ html {
 
 body {
 	height: 100%;
-	width:95%;
+	width:98%;
 	margin:auto;
 	color: white;
 }
 
 
-header{
-	background-color: rgba(0,0,0,0.9);
-	padding: 20px;
-	margin-bottom: 3%;
-	border-radius: 0px 75px 0px 10px;
+header {
+    background-color: rgba(0,0,0,0.9);
+    padding: 7px;
+    margin-bottom: 2%;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.popup {
+    margin: auto;
+    text-align: center;
+    margin-top: 35px;
+    width: 85%;
+    border-radius: 15px 15px 15px 15px;
+    font-family: Orbitron, Arial, sans-serif;
+}
+
+.popup li {
+    font-size: .70em;
 }
 
 .content {
-	float:right;
-	width:82%;
-	border-radius: 0px 50px 50px 50px;
+    float: right;
+    width: 83%;
+    border-radius: 0px 15px 15px 0px;
+    font-family: Orbitron, Arial, sans-serif;
 }
 
 .content img{
@@ -41,12 +55,52 @@ header{
 	padding-right: 7px;
 }
 
-.content ul{
-	text-align:center;
+.content ul {
+    text-align: center;
 }
 
 .content li{
 	margin-bottom:1%;
+}
+
+#search{
+    margin-left: 20px;
+}
+
+#tblForm td {
+    text-align: right;
+    height: 40px;
+    width: 30%;
+    padding-right: 5px;
+}
+
+#tblForm td + td {
+    text-align: left;
+    width: 70%;
+}
+
+#tblForm, th {
+    padding: 4px;
+    border-collapse: collapse;
+    border: 1px solid white;
+    color: white;
+}
+
+#tblForm, td {
+    font-size: 12px;
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+
+#tblListData {
+    font-family: Orbitron, Arial, sans-serif;
+    margin-left: 10px;
+}
+
+hr{
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 #nav {
@@ -60,10 +114,11 @@ header{
 }
 
 #nav li {
-	display: block;
-	margin-top: 3%;
-	white-space: nowrap;
-	font-size:1.1em;	
+    display: block;
+    margin-top: 3%;
+    white-space: nowrap;
+    font-size: 1.05em;
+    font-family: Virgo, Arial, sans-serif;
 }
 
 #nav ul{
@@ -83,9 +138,14 @@ input {
 	margin-bottom: 4px;
 }
 
+input[type="text"] {
+    width: 300px;
+}
+
 table {
-	border-spacing: 10px;
+    border-spacing: 10px;
     border-collapse: separate;
+    border-radius: 15px 15px 15px 15px;
 }
 
 th {
@@ -101,13 +161,11 @@ td {
 	font-size: 0.9em;
 }
 
-
-
 section {
-	overflow:auto;
-	background-color: rgba(0,0,0,0.9);
-	margin-bottom: 2%;
-	min-height:74%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    margin-bottom: 1%;
+    min-height: 81%;
 }
 
 ul {
@@ -119,20 +177,30 @@ p {
 	margin-bottom: 2.5%;
 }
 
-h1{
-	text-align:center;
-	color: #0A30DA;	
-	opacity: 0.8;
-	font-size: 3.4em;
-	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-	margin-bottom: 0.5%;
-	margin-top: 0.5%;
-	letter-spacing: 2px;
+h1 {
+    text-align: center;
+    color: #00bfff;
+    opacity: 0.8;
+    font-size: 3.4em;
+    /*
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    */
+    margin-bottom: 0.4%;
+    margin-top: 0.4%;
+    letter-spacing: 2px;
+    font-family: Virgo, Arial, sans-serif;
 }
 
-img {
-    border-radius: 30px 15px 30px 15px;
-	max-width: 30%;
+h1 img {
+    border-radius: 15px 15px 15px 15px;
+    width: 7%;
+    max-width: 15%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+h2 {
+    margin-bottom: 15px;
 }
 
 .button:hover {
@@ -140,15 +208,16 @@ img {
 }
 
 .button {
-	border-radius: 11px 11px 11px 11px;
-	background: -webkit-linear-gradient(#2E2F2F, #6A6B6B); 
-	background: -o-linear-gradient(#2E2F2F, #6A6B6B); 
-	background: -moz-linear-gradient(#2E2F2F,0.8), #6A6B6B);
-	background: linear-gradient(#2E2F2F, #6A6B6B); 
-	color: white;
-	margin: 1%;
-	padding: 5px;
-	font-weight: bold;
+    border-radius: 10px 10px 10px 10px;
+    background: -webkit-linear-gradient(#2E2F2F, #6A6B6B);
+    background: -o-linear-gradient(#2E2F2F, #6A6B6B);
+    background: -moz-linear-gradient(#2E2F2F,0.8), #6A6B6B);
+    background: linear-gradient(#2E2F2F, #6A6B6B);
+    color: white;
+    margin: 1%;
+    padding: 5px;
+    font-weight: bold;
+    font: 11px Virgo;
 }
 
 a:link {
@@ -163,6 +232,16 @@ a:visited {
 a:hover{
 	color: #8FA0E6;
 	font-size: 101%;
+}
+
+table a:hover {
+    color: #8FA0E6;
+    font-size: 100%;
+}
+
+#link_header {
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 
 nav a:link {
@@ -191,9 +270,9 @@ a:active, nav a:active {
 }
 
 .node text {
-    font: 12px sans-serif;
+    font: 10px sans-serif;
     font-weight: bold;
-
+    font-family: Orbitron, Arial, sans-serif;
 }
 
 .link {
@@ -215,15 +294,64 @@ a:active, nav a:active {
 
 #tblListData, td {
     font-size: 12px;
-    padding: 3px;
+    padding: 10px;
     border-collapse: collapse;
-    border-right: 1px solid black;
 }
 
 #btnToggleDocuments {
-    padding: 4px;
+    padding: 5px;
     background-color: lightsteelblue;
-    font: 11px sans-serif;
+    font-weight: bold;
+    font: 11px Virgo;
     border-color: steelblue;
-    border-radius: 1px 8px 8px 1px;
+    border-radius: 8px 8px 8px 8px;
+    margin-left: 10px;
+    margin-bottom: 8px;
+}
+
+#btnToggleDocuments, #btnUpload {
+    padding: 5px;
+    background-color: lightsteelblue;
+    font-weight: bold;
+    font: 11px Virgo;
+    border-color: steelblue;
+    border-radius: 8px 8px 8px 8px;
+    margin-left: 10px;
+    margin-bottom: 8px;
+}
+
+@font-face {
+    font-family: 'Michroma';
+    src: url('../fonts/michroma-webfont.eot');
+    src: url('../fonts/michroma-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/michroma-webfont.woff2') format('woff2'), 
+        url('../fonts/michroma-webfont.woff') format('woff'), 
+        url('../fonts/michroma-webfont.ttf') format('truetype'), 
+        url('../fonts/michroma-webfont.svg#michromaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/orbitron-black-webfont.eot');
+    src: url('../fonts/orbitron-black-webfont.eot?#iefix') format('embedded-opentype'), 
+        url('../fonts/orbitron-black-webfont.woff2') format('woff2'), 
+        url('../fonts/orbitron-black-webfont.woff') format('woff'), 
+        url('../fonts/orbitron-black-webfont.ttf') format('truetype'), 
+        url('../fonts/orbitron-black-webfont.svg#orbitronblack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Virgo';
+    src: url('../fonts/virgo-webfont.eot');
+    src: url('../fonts/virgo-webfont.eot?#iefix') format('embedded-opentype'), 
+        url('../fonts/virgo-webfont.woff2') format('woff2'), 
+        url('../fonts/virgo-webfont.woff') format('woff'), 
+        url('../fonts/virgo-webfont.ttf') format('truetype'), 
+        url('../fonts/virgo-webfont.svg#virgo_01regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }

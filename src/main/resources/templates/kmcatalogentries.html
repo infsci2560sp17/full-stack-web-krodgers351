@@ -10,11 +10,18 @@
     <script th:inline="javascript" type="text/javascript">
         $("document").ready(function (e) {
             /*<![CDATA[*/
+            getDataFromWebService(/*[[@{/public/api/departments}]]*/, "audience");
             getDataFromWebService(/*[[@{/public/api/documentcategories}]]*/, "doc");
             getDataFromWebService(/*[[@{/public/api/communities}]]*/, "community");
             getDataFromWebService(/*[[@{/public/api/products}]]*/, "product");
             /*]]>*/
         });
+
+        function creatAudienceOptions(data) {
+            for (var field in data) {
+                $('<option value="' + data[field].departmentName + '">' + data[field].departmentName + '</option>').appendTo('#audience_selection');
+            }
+        }
 
         function creatDocOptions(data) {
             for (var field in data) {
@@ -41,6 +48,9 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data, status, jqXHR) { //on successful ajax call
+                    if (targetDOM == "audience") {
+                        creatAudienceOptions(data);
+                    }
                     if (targetDOM == "doc") {
                         creatDocOptions(data);
                     }
@@ -57,12 +67,16 @@
             });
         }
 
+        function popup() {
+            window.open("/files", 'window', 'width=800,height=500');
+        }
+
     </script>
 
     </head>
     <body>
 		<header>
-			<h1 data-th-inline="text"><img th:src="@{/images/logo.jpg}" alt=""/>Knowledge Management System</h1>
+			<h1 data-th-inline="text"><img th:src="@{/images/logo2.png}" alt=""/>Knowledge Management System</h1>
 		</header>
 		<section id="nav">
 			<nav>
@@ -73,22 +87,24 @@
                     <li><a th:href="@{/departments}">Departments</a></li>
                     <li><a th:href="@{/communities}">Communities</a></li>
                     <li><a th:href="@{/d3tree}">D3 Tree</a></li>
+                    <li><a th:href="@{/searchcatalog}">Search Catalog</a></li>
 				</ul>
 			</nav>
 		</section>
 		<section class="content">
 			<div>
 				<table id="catalog">
-					<tr>
-						<th>ID</th>
-						<th>Title</th>
-						<th>Owner</th>
-						<th>Audience</th>
-						<th>Category</th>
-						<th>Community</th>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Owner</th>
+                        <th>Audience</th>
+                        <th>Category</th>
+                        <th>Community</th>
                         <th>Product</th>
-						<th>Filename</th>
-					</tr>                
+                        <th>Filename</th>
+                        <th id="link_header"><a href="#add">add entry</a></th>
+                    </tr>                
 					<tr data-th-each="entry : ${kmcatalogentries}">
 						<td data-th-text="${entry.id}"></td>
 						<td data-th-text="${entry.documentTitle}"></td>
@@ -105,19 +121,80 @@
 			</div>
 			<hr />
 			<div id="addEntry">
-				<h2>Add Entry to KM Catalog</h2>
 				<form data-th-action="@{/kmcatalogentries/add}" name="addKMCatalogEntryForm" method="post">
-					Title: <input type="text" name="documentTitle" /><br />
-					Knowledge Owner: <input type="text" name="knowledgeOwner" /><br />
-					Audience: <input type="text" name="audience" /><br />
-                    Document Category:
-                    <select id="doc_cat_selection" name="documentCategory"></select><br />
-					Community:
-                    <select id="community_selection" name="community"></select><br />
-                    Product:
-                    <select id="product_selection" name="product"></select><br />
-					Filename: <input type="text" name="documentFilename" /><br />
-					<input class="button" type="submit" value="Add Catalog Entry"/>
+                    <table id="tblForm">
+                        <tr>
+                            <th colspan="2"><h2 id="add">Add Entry to KM Catalog</h2></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Title:
+                            </td>
+                            <td>
+                                <input type="text" name="documentTitle" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Knowledge Owner:
+                            </td>
+                            <td>
+                                <input type="text" name="knowledgeOwner" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Audience:
+                            </td>
+                            <td>
+                                <select id="audience_selection" name="audience" required="required"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Document Category:
+                            </td>
+                            <td>
+                                <select id="doc_cat_selection" name="documentCategory" required="required"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Community:
+                            </td>
+                            <td>
+                                <select id="community_selection" name="community" required="required"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Product:
+                            </td>
+                            <td>
+                                <select id="product_selection" name="product" required="required"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Filename:
+                            </td>
+                            <td>
+                                <input type="text" name="documentFilename" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button id="btnUpload" th:onclick="'javascript:popup()'">Upload File</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="button" type="submit" value="Add Catalog Entry" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
 				</form> 
 			</div>
 			<hr />

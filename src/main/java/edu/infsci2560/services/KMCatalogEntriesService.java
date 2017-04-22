@@ -50,4 +50,24 @@ public class KMCatalogEntriesService {
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<>(repository.save(catalogEntry), headers, HttpStatus.OK);
     }
+
+	@RequestMapping(value = "/search/{searchString}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Iterable<KMCatalogEntry>> searchRepo(@PathVariable String searchString){
+		Iterable<KMCatalogEntry> allEntries = repository.findAll();
+		Iterable<KMCatalogEntry> returnEntries = new ArrayList<KMCatalogEntry>();
+		for(KMCatalogEntry entry : allEntries){
+			if(entry.getDocumentTitle().toLowerCase().contains(searchString.toLowerCase())
+				|| entry.getKnowledgeOwner().toLowerCase().contains(searchString.toLowerCase())
+				|| entry.getAudience().toLowerCase().contains(searchString.toLowerCase())
+				|| entry.getDocumentCategory().toLowerCase().contains(searchString.toLowerCase())
+				|| entry.getProduct().toLowerCase().contains(searchString.toLowerCase())
+				|| entry.getCommunity().toLowerCase().contains(searchString.toLowerCase())
+				|| entry.getDocumentFilename().toLowerCase().contains(searchString.toLowerCase())){
+				((ArrayList<KMCatalogEntry>)returnEntries).add(entry);
+			}
+		}
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<>(returnEntries, headers, HttpStatus.OK);
+	}
+
 }

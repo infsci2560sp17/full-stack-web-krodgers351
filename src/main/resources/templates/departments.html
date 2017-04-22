@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1 data-th-inline="text"><img th:src="@{/images/logo.jpg}" alt="" />Knowledge Management System</h1>
+        <h1 data-th-inline="text"><img th:src="@{/images/logo2.png}" alt="" />Knowledge Management System</h1>
     </header>
     <section id="nav">
         <nav>
@@ -19,6 +19,7 @@
                 <li><a th:href="@{/departments}">Departments</a></li>
                 <li><a th:href="@{/communities}">Communities</a></li>
                 <li><a th:href="@{/d3tree}">D3 Tree</a></li>
+                <li><a th:href="@{/searchcatalog}">Search Catalog</a></li>
             </ul>
         </nav>
     </section>
@@ -37,10 +38,26 @@
         </div>
         <hr />
         <div id="addEntry">
-            <h2>Add a New Department</h2>
             <form data-th-action="@{/departments/add}" name="addDepartmentForm" method="post">
-                Department: <input type="text" name="departmentName" /><br />
-                <input class="button" type="submit" value="Add Department" />
+                <table id="tblForm">
+                    <tr>
+                        <th colspan="2"><h2>Add a New Department</h2></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Department:
+                        </td>
+                        <td>
+                            <input type="text" name="departmentName" required="required" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="button" type="submit" value="Add Department" />
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
             </form>
         </div>
         <hr />

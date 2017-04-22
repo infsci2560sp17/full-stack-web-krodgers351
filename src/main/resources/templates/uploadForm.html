@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>File Upload</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" href="../../css/styles.css" />      
+    </head>
+    <body>
+        <section class="popup">
+            <h1>Upload a File</h1>
+            <div data-th-if="${message}">
+                <h2 data-th-text="${message}" />
+            </div>
+            <hr />
+            <div>
+                <form data-th-action="@{/files}" name="uploadFileForm" method="POST" enctype="multipart/form-data">
+                    Choose File:<input type="file" name="file" /><br />
+                    <input type="submit" value="Upload" />
+                </form>
+            </div>
+            <hr />
+            <div>
+                <ul>
+                    <li data-th-each="file : ${files}">
+                        <a data-th-href="${file}" data-th-text="${file}"></a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </body>
+</html>
